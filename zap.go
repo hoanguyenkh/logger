@@ -42,7 +42,7 @@ func getZapLevel(level string) zapcore.Level {
 }
 
 func newZapLogger(config Configuration) (*zapLogger, error) {
-	cores := []zapcore.Core{}
+	var cores []zapcore.Core
 	atom := zap.NewAtomicLevel()
 	if config.EnableConsole {
 		level := getZapLevel(config.ConsoleLevel)
@@ -129,8 +129,12 @@ func (l *zapLogger) WithFields(fields Fields) Logger {
 		fds = append(fds, k)
 		fds = append(fds, v)
 	}
-	newLogger := l.sugaredLogger.With(fds...)
-	return &zapLogger{newLogger, l.atomicLevel}
+	// AddCallerSkip(-1) is important here, else the file that gets logged will always be the wrapped file.
+	newLogger := l.sugaredLogger.WithOptions(zap.AddCallerSkip(-1)).With(fds...)
+	return &zapLogger{
+		sugaredLogger: newLogger,
+		atomicLevel:   l.atomicLevel,
+	}
 }
 
 func (l *zapLogger) GetDelegate() interface{} {
