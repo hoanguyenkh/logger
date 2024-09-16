@@ -33,6 +33,9 @@ const (
 	LoggerBackendZap LoggerBackend = iota
 	// LoggerBackendLogrus logging using logrus backend
 	LoggerBackendLogrus
+
+	//LoggerBackendPhuslu logging using phuslu backend
+	LoggerBackendPhuslu
 )
 
 var (
@@ -107,6 +110,9 @@ func NewLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 
 	case LoggerBackendLogrus:
 		return newLogrusLogger(config)
+
+	case LoggerBackendPhuslu:
+		return NewPhusluLogger(config)
 
 	default:
 		return nil, errInvalidLoggerInstance

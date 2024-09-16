@@ -1,3 +1,7 @@
 # logger
 
-Flexible logger interface that supports both zap and logrus
+Flexible logger interface that supports both zap, logrus and phuslu
+
+
+# Benchmark
+    go test -bench=. -run=xxx -benchmem
