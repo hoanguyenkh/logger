@@ -1,9 +1,10 @@
 package logger
 
 import (
+	"io"
+
 	"github.com/KyberNetwork/logger/phuslu"
 	logphuslu "github.com/phuslu/log"
-	"io"
 )
 
 type PhusluLogger struct {
@@ -26,6 +27,9 @@ func NewPhusluLogger(config Configuration) (*PhusluLogger, error) {
 		Style:    phuslu.StylePretty,
 	}
 	logger.WithConfig(&cfg)
+	if config.EnableFile && config.FileLocation != "" {
+		logger.useFileWrite(config.FileLocation)
+	}
 	return logger, nil
 }
 
@@ -79,11 +83,27 @@ func (l *PhusluLogger) useConsoleWriter() {
 }
 
 // useConsoleWriter sets the logger to use a console writer.
-func (l *PhusluLogger) useFileWrite() {
-	l.setWriter(&logphuslu.ConsoleWriter{
-		Writer:    l.out,
-		Formatter: l.formatter.Format,
-	})
+func (l *PhusluLogger) useFileWrite(filename string) {
+	//TODO: using AsyncWriter
+	//fileWriter := logphuslu.AsyncWriter{
+	//	ChannelSize: 4096,
+	//	Writer: &logphuslu.FileWriter{
+	//		Filename:     filename,
+	//		FileMode:     0600,
+	//		MaxSize:      100 * 1024 * 1024, // 100 MB
+	//		MaxBackups:   100,
+	//		EnsureFolder: true,
+	//		LocalTime:    false,
+	//	},
+	//}
+	fileWriter := logphuslu.FileWriter{
+		Filename:     filename,
+		EnsureFolder: true,
+		MaxSize:      100 * 1024 * 1024, // 100 MB
+		MaxBackups:   100,
+		LocalTime:    false,
+	}
+	l.setWriter(&fileWriter)
 }
 
 // useJSONWriter sets the logger to use a IOWriter wrapper.
