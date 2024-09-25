@@ -23,7 +23,7 @@ func TestNewLogger(t *testing.T) {
 	}{
 		{"ZapLogger", logger.LoggerBackendZap, false},
 		{"LogrusLogger", logger.LoggerBackendLogrus, false},
-		{"PhusluLogger", logger.LoggerBackendPhuslu, false},
+		{"phusluLogger", logger.LoggerBackendPhuslu, false},
 		{"InvalidLogger", logger.LoggerBackend(999), true},
 	}
 
@@ -58,6 +58,10 @@ func TestLogger(t *testing.T) {
 	log.Info("test log zap info")
 	log.Debug("test log zap debug")
 	log.Error("test log zap error")
+
+	log1 := logger.DefaultLogger()
+	log1.Info("test default logger")
+	log1.Error("test default logger")
 }
 
 func TestPhuslu_useFile(t *testing.T) {

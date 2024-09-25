@@ -86,7 +86,7 @@ func DefaultLogger() Logger {
 	cfg := Configuration{
 		EnableConsole:    true,
 		EnableJSONFormat: false,
-		ConsoleLevel:     "warn",
+		ConsoleLevel:     "info",
 		EnableFile:       false,
 		FileJSONFormat:   false,
 	}

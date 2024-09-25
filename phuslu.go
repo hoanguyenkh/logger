@@ -7,15 +7,15 @@ import (
 	logphuslu "github.com/phuslu/log"
 )
 
-type PhusluLogger struct {
+type phusluLogger struct {
 	logger    *logphuslu.Logger
 	context   logphuslu.Fields
 	out       io.Writer
 	formatter *phuslu.Formatter
 }
 
-func newPhusluLogger(config Configuration) (*PhusluLogger, error) {
-	logger := &PhusluLogger{
+func newPhusluLogger(config Configuration) (*phusluLogger, error) {
+	logger := &phusluLogger{
 		logger: &logphuslu.Logger{
 			Caller: 2,
 		},
@@ -33,8 +33,8 @@ func newPhusluLogger(config Configuration) (*PhusluLogger, error) {
 	return logger, nil
 }
 
-func (l *PhusluLogger) WithFields(keyValues Fields) Logger {
-	return &PhusluLogger{
+func (l *phusluLogger) WithFields(keyValues Fields) Logger {
+	return &phusluLogger{
 		logger: &logphuslu.Logger{
 			Caller: 2,
 		},
@@ -43,7 +43,7 @@ func (l *PhusluLogger) WithFields(keyValues Fields) Logger {
 	}
 }
 
-func (l *PhusluLogger) WithConfig(cfg *phuslu.Config) *PhusluLogger {
+func (l *phusluLogger) WithConfig(cfg *phuslu.Config) *phusluLogger {
 	// Use default config if nil.
 	if cfg == nil {
 		c := phuslu.DefaultConfig()
@@ -56,12 +56,12 @@ func (l *PhusluLogger) WithConfig(cfg *phuslu.Config) *PhusluLogger {
 }
 
 // withTimeFormat sets the time format for the logger.
-func (l *PhusluLogger) withTimeFormat(formatStr string) {
+func (l *phusluLogger) withTimeFormat(formatStr string) {
 	l.logger.TimeFormat = formatStr
 }
 
 // sets the style of the logger.
-func (l *PhusluLogger) withStyle(style string) {
+func (l *phusluLogger) withStyle(style string) {
 	if style == phuslu.StylePretty {
 		l.useConsoleWriter()
 	} else if style == phuslu.StyleJSON {
@@ -70,12 +70,12 @@ func (l *PhusluLogger) withStyle(style string) {
 }
 
 // SetLevel sets the log level of the logger.
-func (l *PhusluLogger) withLogLevel(level string) {
+func (l *phusluLogger) withLogLevel(level string) {
 	l.logger.Level = logphuslu.ParseLevel(level)
 }
 
 // useConsoleWriter sets the logger to use a console writer.
-func (l *PhusluLogger) useConsoleWriter() {
+func (l *phusluLogger) useConsoleWriter() {
 	l.setWriter(&logphuslu.ConsoleWriter{
 		Writer:    l.out,
 		Formatter: l.formatter.Format,
@@ -83,7 +83,7 @@ func (l *PhusluLogger) useConsoleWriter() {
 }
 
 // useConsoleWriter sets the logger to use a console writer.
-func (l *PhusluLogger) useFileWrite(filename string) {
+func (l *phusluLogger) useFileWrite(filename string) {
 	//TODO: using AsyncWriter
 	//fileWriter := logphuslu.AsyncWriter{
 	//	ChannelSize: 4096,
@@ -107,72 +107,72 @@ func (l *PhusluLogger) useFileWrite(filename string) {
 }
 
 // useJSONWriter sets the logger to use a IOWriter wrapper.
-func (l *PhusluLogger) useJSONWriter() {
+func (l *phusluLogger) useJSONWriter() {
 	l.setWriter(logphuslu.IOWriter{Writer: l.out})
 }
 
 // setWriter sets the writer of the logger.
-func (l *PhusluLogger) setWriter(writer logphuslu.Writer) {
+func (l *phusluLogger) setWriter(writer logphuslu.Writer) {
 	l.logger.Writer = writer
 }
 
-func (l *PhusluLogger) Debugf(format string, args ...interface{}) {
+func (l *phusluLogger) Debugf(format string, args ...interface{}) {
 	l.logger.Debug().Msgf(format, args...)
 }
 
-func (l *PhusluLogger) Debug(msg string) {
+func (l *phusluLogger) Debug(msg string) {
 	l.logger.Debug().Msg(msg)
 }
 
-func (l *PhusluLogger) Infof(format string, args ...interface{}) {
+func (l *phusluLogger) Infof(format string, args ...interface{}) {
 	l.logger.Info().Msgf(format, args...)
 }
 
-func (l *PhusluLogger) Info(msg string) {
+func (l *phusluLogger) Info(msg string) {
 	l.logger.Info().Msg(msg)
 }
 
-func (l *PhusluLogger) Infoln(msg string) {
+func (l *phusluLogger) Infoln(msg string) {
 	l.logger.Info().Msg(msg)
 }
 
-func (l *PhusluLogger) Warnf(format string, args ...interface{}) {
+func (l *phusluLogger) Warnf(format string, args ...interface{}) {
 	l.logger.Warn().Msgf(format, args...)
 }
 
-func (l *PhusluLogger) Warn(msg string) {
+func (l *phusluLogger) Warn(msg string) {
 	l.logger.Warn().Msg(msg)
 }
 
-func (l *PhusluLogger) Errorf(format string, args ...interface{}) {
+func (l *phusluLogger) Errorf(format string, args ...interface{}) {
 	l.logger.Error().Msgf(format, args...)
 }
 
-func (l *PhusluLogger) Error(msg string) {
+func (l *phusluLogger) Error(msg string) {
 	l.logger.Error().Msg(msg)
 }
 
-func (l *PhusluLogger) Fatalf(format string, args ...interface{}) {
+func (l *phusluLogger) Fatalf(format string, args ...interface{}) {
 	l.logger.Fatal().Msgf(format, args...)
 }
 
-func (l *PhusluLogger) Fatal(msg string) {
+func (l *phusluLogger) Fatal(msg string) {
 	l.logger.Fatal().Msg(msg)
 }
 
-func (l *PhusluLogger) Panicf(format string, args ...interface{}) {
+func (l *phusluLogger) Panicf(format string, args ...interface{}) {
 	l.logger.Panic().Msgf(format, args...)
 }
 
-func (l *PhusluLogger) Panic(msg string) {
+func (l *phusluLogger) Panic(msg string) {
 	l.logger.Panic().Msg(msg)
 }
 
-func (l *PhusluLogger) GetDelegate() interface{} {
+func (l *phusluLogger) GetDelegate() interface{} {
 	return l.logger
 }
 
-func (l *PhusluLogger) SetLogLevel(logLevel string) error {
+func (l *phusluLogger) SetLogLevel(logLevel string) error {
 	l.logger.Level = logphuslu.ParseLevel(logLevel)
 	return nil
 }
