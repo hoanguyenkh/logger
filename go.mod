@@ -1,6 +1,6 @@
 module github.com/KyberNetwork/logger
 
-go 1.23.0
+go 1.23.1
 
 require (
 	github.com/phuslu/log v1.0.111

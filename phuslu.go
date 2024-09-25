@@ -14,7 +14,7 @@ type PhusluLogger struct {
 	formatter *phuslu.Formatter
 }
 
-func NewPhusluLogger(config Configuration) (*PhusluLogger, error) {
+func newPhusluLogger(config Configuration) (*PhusluLogger, error) {
 	logger := &PhusluLogger{
 		logger: &logphuslu.Logger{
 			Caller: 2,

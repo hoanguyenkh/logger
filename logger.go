@@ -90,7 +90,7 @@ func DefaultLogger() Logger {
 		EnableFile:       false,
 		FileJSONFormat:   false,
 	}
-	logger, _ := newZapLogger(cfg)
+	logger, _ := newPhusluLogger(cfg)
 	return logger
 }
 
@@ -112,7 +112,7 @@ func NewLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 		return newLogrusLogger(config)
 
 	case LoggerBackendPhuslu:
-		return NewPhusluLogger(config)
+		return newPhusluLogger(config)
 
 	default:
 		return nil, errInvalidLoggerInstance
