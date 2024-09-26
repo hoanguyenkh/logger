@@ -68,7 +68,7 @@ func (l *logrusLogger) Debugf(format string, args ...interface{}) {
 	l.logger.Debugf(format, args...)
 }
 
-func (l *logrusLogger) Debug(msg string) {
+func (l *logrusLogger) Debug(msg interface{}) {
 	l.logger.Debug(msg)
 }
 
@@ -76,7 +76,7 @@ func (l *logrusLogger) Infof(format string, args ...interface{}) {
 	l.logger.Infof(format, args...)
 }
 
-func (l *logrusLogger) Info(msg string) {
+func (l *logrusLogger) Info(msg interface{}) {
 	l.logger.Info(msg)
 }
 
@@ -88,7 +88,7 @@ func (l *logrusLogger) Warnf(format string, args ...interface{}) {
 	l.logger.Warnf(format, args...)
 }
 
-func (l *logrusLogger) Warn(msg string) {
+func (l *logrusLogger) Warn(msg interface{}) {
 	l.logger.Warn(msg)
 }
 
@@ -96,7 +96,7 @@ func (l *logrusLogger) Errorf(format string, args ...interface{}) {
 	l.logger.Errorf(format, args...)
 }
 
-func (l *logrusLogger) Error(msg string) {
+func (l *logrusLogger) Error(msg interface{}) {
 	l.logger.Error(msg)
 }
 
@@ -104,7 +104,7 @@ func (l *logrusLogger) Fatalf(format string, args ...interface{}) {
 	l.logger.Fatalf(format, args...)
 }
 
-func (l *logrusLogger) Fatal(msg string) {
+func (l *logrusLogger) Fatal(msg interface{}) {
 	l.logger.Fatal(msg)
 }
 
@@ -139,7 +139,7 @@ func (l *logrusLogEntry) Debugf(format string, args ...interface{}) {
 	l.entry.Debugf(format, args...)
 }
 
-func (l *logrusLogEntry) Debug(msg string) {
+func (l *logrusLogEntry) Debug(msg interface{}) {
 	l.entry.Debug(msg)
 }
 
@@ -147,7 +147,7 @@ func (l *logrusLogEntry) Infof(format string, args ...interface{}) {
 	l.entry.Infof(format, args...)
 }
 
-func (l *logrusLogEntry) Info(msg string) {
+func (l *logrusLogEntry) Info(msg interface{}) {
 	l.entry.Info(msg)
 }
 
@@ -159,7 +159,7 @@ func (l *logrusLogEntry) Warnf(format string, args ...interface{}) {
 	l.entry.Warnf(format, args...)
 }
 
-func (l *logrusLogEntry) Warn(msg string) {
+func (l *logrusLogEntry) Warn(msg interface{}) {
 	l.entry.Warn(msg)
 }
 
@@ -167,7 +167,7 @@ func (l *logrusLogEntry) Errorf(format string, args ...interface{}) {
 	l.entry.Errorf(format, args...)
 }
 
-func (l *logrusLogEntry) Error(msg string) {
+func (l *logrusLogEntry) Error(msg interface{}) {
 	l.entry.Error(msg)
 }
 
@@ -175,7 +175,7 @@ func (l *logrusLogEntry) Fatalf(format string, args ...interface{}) {
 	l.entry.Fatalf(format, args...)
 }
 
-func (l *logrusLogEntry) Fatal(msg string) {
+func (l *logrusLogEntry) Fatal(msg interface{}) {
 	l.entry.Fatal(msg)
 }
 

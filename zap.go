@@ -83,7 +83,7 @@ func (l *zapLogger) Debugf(format string, args ...interface{}) {
 	l.sugaredLogger.Debugf(format, args...)
 }
 
-func (l *zapLogger) Debug(msg string) {
+func (l *zapLogger) Debug(msg interface{}) {
 	l.sugaredLogger.Debug(msg)
 }
 
@@ -91,7 +91,7 @@ func (l *zapLogger) Infof(format string, args ...interface{}) {
 	l.sugaredLogger.Infof(format, args...)
 }
 
-func (l *zapLogger) Info(msg string) {
+func (l *zapLogger) Info(msg interface{}) {
 	l.sugaredLogger.Info(msg)
 }
 
@@ -103,7 +103,7 @@ func (l *zapLogger) Warnf(format string, args ...interface{}) {
 	l.sugaredLogger.Warnf(format, args...)
 }
 
-func (l *zapLogger) Warn(msg string) {
+func (l *zapLogger) Warn(msg interface{}) {
 	l.sugaredLogger.Warn(msg)
 }
 
@@ -111,7 +111,7 @@ func (l *zapLogger) Errorf(format string, args ...interface{}) {
 	l.sugaredLogger.Errorf(format, args...)
 }
 
-func (l *zapLogger) Error(msg string) {
+func (l *zapLogger) Error(msg interface{}) {
 	l.sugaredLogger.Error(msg)
 }
 
@@ -119,7 +119,7 @@ func (l *zapLogger) Fatalf(format string, args ...interface{}) {
 	l.sugaredLogger.Fatalf(format, args...)
 }
 
-func (l *zapLogger) Fatal(msg string) {
+func (l *zapLogger) Fatal(msg interface{}) {
 	l.sugaredLogger.Fatal(msg)
 }
 

@@ -46,20 +46,20 @@ var (
 
 // Logger is our contract for the logger
 type Logger interface {
-	Debug(msg string)
+	Debug(msg interface{})
 	Debugf(format string, args ...interface{})
 
-	Info(msg string)
+	Info(msg interface{})
 	Infof(format string, args ...interface{})
 	Infoln(msg string)
 
-	Warn(msg string)
+	Warn(msg interface{})
 	Warnf(format string, args ...interface{})
 
-	Error(msg string)
+	Error(msg interface{})
 	Errorf(format string, args ...interface{})
 
-	Fatal(msg string)
+	Fatal(msg interface{})
 	Fatalf(format string, args ...interface{})
 
 	WithFields(keyValues Fields) Logger
@@ -117,60 +117,4 @@ func NewLogger(config Configuration, backend LoggerBackend) (Logger, error) {
 	default:
 		return nil, errInvalidLoggerInstance
 	}
-}
-
-func Debug(msg string) {
-	log.Debugf(msg)
-}
-
-func Debugf(format string, args ...interface{}) {
-	log.Debugf(format, args...)
-}
-
-func Info(msg string) {
-	log.Infof(msg)
-}
-
-func Infof(format string, args ...interface{}) {
-	log.Infof(format, args...)
-}
-
-func Infoln(msg string) {
-	log.Infoln(msg)
-}
-
-func Warn(msg string) {
-	log.Warnf(msg)
-}
-
-func Warnf(format string, args ...interface{}) {
-	log.Warnf(format, args...)
-}
-
-func Error(msg string) {
-	log.Errorf(msg)
-}
-
-func Errorf(format string, args ...interface{}) {
-	log.Errorf(format, args...)
-}
-
-func Fatal(msg string) {
-	log.Fatalf(msg)
-}
-
-func Fatalf(format string, args ...interface{}) {
-	log.Fatalf(format, args...)
-}
-
-func WithFields(keyValues Fields) Logger {
-	return log.WithFields(keyValues)
-}
-
-func GetDelegate() interface{} {
-	return log.GetDelegate()
-}
-
-func SetLogLevel(level string) error {
-	return log.SetLogLevel(level)
 }
