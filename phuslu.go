@@ -121,16 +121,16 @@ func (l *phusluLogger) Debugf(format string, args ...interface{}) {
 	l.logger.Debug().Msgf(format, args...)
 }
 
-func (l *phusluLogger) Debug(msg interface{}) {
-	l.logger.Debug().Msg(fmt.Sprintf("%v", msg))
+func (l *phusluLogger) Debug(msg ...interface{}) {
+	l.logger.Debug().Msg(fmt.Sprintf("%v", msg...))
 }
 
 func (l *phusluLogger) Infof(format string, args ...interface{}) {
 	l.logger.Info().Msgf(format, args...)
 }
 
-func (l *phusluLogger) Info(msg interface{}) {
-	l.logger.Info().Msg(fmt.Sprintf("%v", msg))
+func (l *phusluLogger) Info(msg ...interface{}) {
+	l.logger.Info().Msg(fmt.Sprintf("%v", msg...))
 
 }
 
@@ -142,32 +142,32 @@ func (l *phusluLogger) Warnf(format string, args ...interface{}) {
 	l.logger.Warn().Msgf(format, args...)
 }
 
-func (l *phusluLogger) Warn(msg interface{}) {
-	l.logger.Warn().Msg(fmt.Sprintf("%v", msg))
+func (l *phusluLogger) Warn(msg ...interface{}) {
+	l.logger.Warn().Msg(fmt.Sprintf("%v", msg...))
 }
 
 func (l *phusluLogger) Errorf(format string, args ...interface{}) {
 	l.logger.Error().Msgf(format, args...)
 }
 
-func (l *phusluLogger) Error(msg interface{}) {
-	l.logger.Error().Msg(fmt.Sprintf("%v", msg))
+func (l *phusluLogger) Error(msg ...interface{}) {
+	l.logger.Error().Msg(fmt.Sprintf("%v", msg...))
 }
 
 func (l *phusluLogger) Fatalf(format string, args ...interface{}) {
 	l.logger.Fatal().Msgf(format, args...)
 }
 
-func (l *phusluLogger) Fatal(msg interface{}) {
-	l.logger.Fatal().Msg(fmt.Sprintf("%v", msg))
+func (l *phusluLogger) Fatal(msg ...interface{}) {
+	l.logger.Fatal().Msg(fmt.Sprintf("%v", msg...))
 }
 
 func (l *phusluLogger) Panicf(format string, args ...interface{}) {
 	l.logger.Panic().Msgf(format, args...)
 }
 
-func (l *phusluLogger) Panic(msg interface{}) {
-	l.logger.Panic().Msg(fmt.Sprintf("%v", msg))
+func (l *phusluLogger) Panic(msg ...interface{}) {
+	l.logger.Panic().Msg(fmt.Sprintf("%v", msg...))
 }
 
 func (l *phusluLogger) GetDelegate() interface{} {

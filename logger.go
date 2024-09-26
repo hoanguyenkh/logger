@@ -46,20 +46,20 @@ var (
 
 // Logger is our contract for the logger
 type Logger interface {
-	Debug(msg interface{})
+	Debug(msg ...interface{})
 	Debugf(format string, args ...interface{})
 
-	Info(msg interface{})
+	Info(msg ...interface{})
 	Infof(format string, args ...interface{})
 	Infoln(msg string)
 
-	Warn(msg interface{})
+	Warn(msg ...interface{})
 	Warnf(format string, args ...interface{})
 
-	Error(msg interface{})
+	Error(msg ...interface{})
 	Errorf(format string, args ...interface{})
 
-	Fatal(msg interface{})
+	Fatal(msg ...interface{})
 	Fatalf(format string, args ...interface{})
 
 	WithFields(keyValues Fields) Logger
