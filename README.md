@@ -60,3 +60,9 @@ func main() {
 
 # Benchmark
     go test -bench=. -run=xxx -benchmem
+
+## The benchmark results
+
+    BenchmarkZapLogger-11           72950010                15.71 ns/op           16 B/op          1 allocs/op
+    BenchmarkLogrusLogger-11        81084960                14.39 ns/op           16 B/op          1 allocs/op
+    BenchmarkPhusluLogger-11        497384498                2.395 ns/op           0 B/op          0 allocs/op
